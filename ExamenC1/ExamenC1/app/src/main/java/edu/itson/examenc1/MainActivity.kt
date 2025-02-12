@@ -27,30 +27,31 @@ class MainActivity : AppCompatActivity() {
         var costoTotal:Double
         val calcular = findViewById<Button>(R.id.calcular)
 
-        fun calcularTotalPagar(tipoPoliza:Double, anio:TextView):Double{
-            var a = anios.toString().toDouble()
-            return tipoPoliza*a
-
+        fun calcularTotalPagar(tipoPoliza: Double, anio: EditText): Double {
+            val a = anio.text.toString().toDoubleOrNull() ?: 0.0
+            return tipoPoliza * a
         }
+
+
 
         calcular.setOnClickListener {
             costoPoliza = 0.0
-            val tp = tPoliza.toString()
+            val tp = tPoliza.text.toString()
             if (tp == "Autos Sedan")      {
                 costoPoliza = 500.0
                 costoTotal = calcularTotalPagar(costoPoliza, anios)
-                costo.setText(String.format(costoPoliza.toString()))
-                pagar.setText(String.format(costoTotal.toString()))
+                costo.text = String.format("%.2f", costoPoliza)
+                pagar.text = String.format("%.2f", costoTotal)
             }else if(tp == "Camionetas"){
                 costoPoliza = 700.0
                 costoTotal = calcularTotalPagar(costoPoliza, anios)
-                costo.setText(String.format(costoPoliza.toString()))
-                pagar.setText(String.format(costoTotal.toString()))
+                costo.text = String.format("%.2f", costoPoliza)
+                pagar.text = String.format("%.2f", costoTotal)
             } else if(tp == "Autos Deportivos"){
                 costoPoliza = 1200.0
                 costoTotal = calcularTotalPagar(costoPoliza, anios)
-                costo.setText(String.format(costoPoliza.toString()))
-                pagar.setText(String.format(costoTotal.toString()))
+                costo.text = String.format("%.2f", costoPoliza)
+                pagar.text = String.format("%.2f", costoTotal)
             }else{
                 costo.setText("Error")
                 pagar.setText("Error")
